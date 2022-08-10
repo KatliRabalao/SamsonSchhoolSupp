@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Samson School Suppliers" Class="SamsonSchoolSuppDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=LAPTOP-MU8AHCD8\SQLEXPRESS;Initial Catalog=&quot;Samson School Suppliers&quot;;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="Samson_School_SuppliersConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.School_tbl" Member="School_tbls">
+    <Type Name="School_tbl">
+      <Column Name="School_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="S_Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="S_Address" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Cell_Number" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="School_tbl_Item_Assign" Member="Item_Assigns" ThisKey="School_ID" OtherKey="School_ID" Type="Item_Assign" />
+    </Type>
+  </Table>
+  <Table Name="dbo.User_tbl" Member="User_tbls">
+    <Type Name="User_tbl">
+      <Column Name="User_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="U_Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Surname" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="User_Type" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Item_tbl" Member="Item_tbls">
+    <Type Name="Item_tbl">
+      <Column Name="Item_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="I_Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="I_Description" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="I_UnitPrice" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Item_tbl_Item_Assign" Member="Item_Assign" ThisKey="Item_ID" OtherKey="Item_ID" Type="Item_Assign" Cardinality="One" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Item_Assign" Member="Item_Assigns">
+    <Type Name="Item_Assign">
+      <Column Name="Item_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="School_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Item_tbl_Item_Assign" Member="Item_tbl" ThisKey="Item_ID" OtherKey="Item_ID" Type="Item_tbl" IsForeignKey="true" />
+      <Association Name="School_tbl_Item_Assign" Member="School_tbl" ThisKey="School_ID" OtherKey="School_ID" Type="School_tbl" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
